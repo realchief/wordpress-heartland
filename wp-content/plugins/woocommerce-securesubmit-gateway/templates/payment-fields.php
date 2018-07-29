@@ -110,6 +110,7 @@
                         <?php else: ?>
                             <input id="securesubmit_card_holder" type="tel" autocomplete="off" class="input-text card-holder" placeholder="Jane Smith" />
                         <?php endif; ?>
+                    </div>
                     <div class="form-row-first half-row">
                         <label for="securesubmit_card_expiration">
                             <?php _e("Expiration date", 'wc_securesubmit') ?>
@@ -148,7 +149,9 @@
                         </p>
                     </div>
                 <?php endif; ?>
-                <button type="button" id="paymentRequestPlainButton">Populate from Chrome</button>
+                <div>
+                  <button type="button" id="paymentRequestPlainButton">Populate from Chrome</button>
+                </div>
             </div>
             <div class="clear"></div>
         </div>

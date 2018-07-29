@@ -1,6 +1,10 @@
-(function(window, document, Heartland, wc_securesubmit_params) {
-  var addHandler = window.Heartland
-    ? Heartland.Events.addHandler
+(function(window, document, GlobalPayments, wc_securesubmit_params) {
+  GlobalPayments.configure({
+  	publicApiKey: "pkapi_cert_dNpEYIISXCGDDyKJiV"
+  });
+
+  var addHandler = window.GlobalPayments
+    ? GlobalPayments.Events.addHandler
     : function() {};
 
   function addClass(element, klass) {
@@ -62,7 +66,7 @@
         cca.type = 'hidden';
         cca.id = 'securesubmit_cca_data';
         cca.name = 'securesubmit_cca_data';
-        cca.value = Heartland.JSON.stringify(data);
+        cca.value = GlobalPayments.JSON.stringify(data);
         form.appendChild(cca);
 
         if ((!token || !token.value) && data.Token && data.Token.Token) {
@@ -83,11 +87,10 @@
       var token = document.getElementById('securesubmit_cardinal_token').value;
       options.Token = {
         Token: token,
-        ExpirationMonth: document.getElementById('exp_month').value,
-        ExpirationYear: document.getElementById('exp_year').value,
+        Expiration: document.getElementById('exp').value,
       };
     } else {
-      var card_holder_name = document.getElementById('securesubmit_card_holder');
+      var card_holder = document.getElementById('securesubmit_card_holder');
       var card = document.getElementById('securesubmit_card_number');
       var cvv = document.getElementById('securesubmit_card_cvv');
       var expiration = document.getElementById('securesubmit_card_expiration');
@@ -103,8 +106,7 @@
       options.Consumer = {
         Account: {
           AccountNumber: card.value.replace(/\D/g, ''),
-          ExpirationMonth: month.replace(/\D/g, ''),
-          ExpirationYear: year.replace(/\D/g, ''),
+          Expiration: expiration.replace(/\D/g, ''),
           CardCode: cvv.value.replace(/\D/g, ''),
         },
       };
@@ -149,7 +151,7 @@
     }
 
     if (newCardUsed && !securesubmitTokenObtained) {
-      var card_holder_name = document.getElementById('securesubmit_card_holder');
+      var card_holder = document.getElementById('securesubmit_card_holder');
       var card = document.getElementById('securesubmit_card_number');
       var cvv = document.getElementById('securesubmit_card_cvv');
       var expiration = document.getElementById('securesubmit_card_expiration');
@@ -163,16 +165,17 @@
       }
 
       var options = {
-        publicKey: wc_securesubmit_params.key,
-        cardNumber: card.value.replace(/\D/g, ''),
-        cardCvv: cvv.value.replace(/\D/g, ''),
-        cardExpMonth: month.replace(/\D/g, ''),
-        cardExpYear: year.replace(/\D/g, ''),
+        publicApiKey: wc_securesubmit_params.key,
+        card-holder-name: card_holder.value.replace(/\W+/g, ''),
+        card-number: card.value.replace(/\D/g, ''),
+        card-cvv: cvv.value.replace(/\D/g, ''),
+        card-expiration: expiration.value.replace(/\D/g, ''),
         success: responseHandler,
         error: responseHandler,
       };
 
-      new Heartland.HPS(options).tokenize();
+      // new Heartland.HPS(options).tokenize();
+      new GlobalPayments.HPS(options).tokenize();
 
       return false;
     }
@@ -259,40 +262,13 @@
           document.querySelector('.securesubmit_new_card_info')
         );
     } else {
-      var heartland = response.heartland || response;
+      var globalpayments = response.globalpayments || response;
       var cardinal = response.cardinal;
-      var token = document.getElementById('securesubmit_token');
-      var last4 = document.createElement('input');
-      var cType = document.createElement('input');
-      var expMo = document.createElement('input');
-      var expYr = document.createElement('input');
 
-      token.value = heartland.token_value;
-
-      last4.type = 'hidden';
-      last4.id = 'last_four';
-      last4.name = 'last_four';
-      last4.value = heartland.last_four;
-
-      cType.type = 'hidden';
-      cType.id = 'card_type';
-      cType.name = 'card_type';
-      cType.value = heartland.card_type;
-
-      expMo.type = 'hidden';
-      expMo.id = 'exp_month';
-      expMo.name = 'exp_month';
-      expMo.value = heartland.exp_month;
-
-      expYr.type = 'hidden';
-      expYr.id = 'exp_year';
-      expYr.name = 'exp_year';
-      expYr.value = heartland.exp_year;
-
-      form.appendChild(last4);
-      form.appendChild(cType);
-      form.appendChild(expMo);
-      form.appendChild(expYr);
+      const token = document.createElement("input");
+	  token.type = "hidden";
+	  token.name = "payment-reference";
+	  token.value = response.paymentReference;
 
       if (cardinal) {
         createCardinalTokenNode(form, cardinal.token_value);
@@ -310,7 +286,7 @@
 
   // Load function to attach event handlers when WC refreshes payment fields
   window.securesubmitLoadEvents = function() {
-    if (!Heartland) {
+    if (!GlobalPayments) {
       return;
     }
 
@@ -340,11 +316,11 @@
     });
 
     if (document.querySelector('.securesubmit_new_card .card-number')) {
-      Heartland.Card.attachNumberEvents('.securesubmit_new_card .card-number');
-      Heartland.Card.attachExpirationEvents(
+      GlobalPayments.Card.attachNumberEvents('.securesubmit_new_card .card-number');
+      GlobalPayments.Card.attachExpirationEvents(
         '.securesubmit_new_card .expiry-date'
       );
-      Heartland.Card.attachCvvEvents('.securesubmit_new_card .card-cvc');
+      GlobalPayments.Card.attachCvvEvents('.securesubmit_new_card .card-cvc');
     }
   };
   window.securesubmitLoadEvents();
@@ -354,25 +330,24 @@
     if (!wc_securesubmit_params || !wc_securesubmit_params.use_iframes) {
       return;
     }
+
     var options = {
-      publicKey: wc_securesubmit_params.key,
-      type: 'iframe',
       fields: {
-      	CardHolderName: {
-	      target: "securesubmit_card_holder",
+      	cardHolderName: {
+	      target: "#securesubmit_card_holder",
 	      placeholder: "Jane Smith",
 	    },
         cardNumber: {
-          target: 'securesubmit_card_number',
+          target: '#securesubmit_card_number',
           placeholder: '•••• •••• •••• ••••',
         },
         cardExpiration: {
-          target: 'securesubmit_card_expiration',
+          target: '#securesubmit_card_expiration',
           placeholder: 'MM / YYYY',
         },
         cardCvv: {
-          target: 'securesubmit_card_cvv',
-          placeholder: 'CVV',
+          target: '#securesubmit_card_cvv',
+          placeholder: '•••',
         },
       },
       style: {
@@ -484,6 +459,19 @@
           top: '6px',
           right: '7px',
         },
+        // Card Holder Name
+        '#heartland-field[name="cardHolderName"] + .extra-div-1': {
+          display: 'block',
+          width: '59px',
+          height: '39px',
+          'background-image':
+            'url("' + wc_securesubmit_params.images_dir + '/ss-cvv@2x.png")',
+          'background-size': '59px auto',
+          'background-position': 'top',
+          position: 'absolute',
+          top: '6px',
+          right: '7px',
+        },
       },
       onTokenSuccess: responseHandler,
       onTokenError: responseHandler,
@@ -496,10 +484,12 @@
       };
     }
 
-    wc_securesubmit_params.hps = new Heartland.HPS(options);
+    wc_securesubmit_params.hps = new GlobalPayments.ui.form(options);
     if (!wc_securesubmit_params.hpsReadyHandler) {
       wc_securesubmit_params.hpsReadyHandler = function() {
         setTimeout(function() {
+          document.getElementById('heartland-frame-cardHolder').style.height =
+            '49px';
           document.getElementById('heartland-frame-cardNumber').style.height =
             '49px';
           document.getElementById(
@@ -512,12 +502,12 @@
       };
     }
 
-    Heartland.Events.removeHandler(
+    GlobalPayments.Events.removeHandler(
       document,
       'securesubmitIframeReady',
       wc_securesubmit_params.hpsReadyHandler
     );
-    Heartland.Events.addHandler(
+    GlobalPayments.Events.addHandler(
       document,
       'securesubmitIframeReady',
       wc_securesubmit_params.hpsReadyHandler
@@ -783,4 +773,6 @@
       })
       .success(processGiftCardResponse);
   };
-})(window, document, window.Heartland, window.wc_securesubmit_params);
+})(window, document, window.GlobalPayments, window.wc_securesubmit_params);
+
+
