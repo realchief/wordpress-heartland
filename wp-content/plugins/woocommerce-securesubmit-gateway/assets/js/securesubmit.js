@@ -1,12 +1,14 @@
 (function(window, document, GlobalPayments, wc_securesubmit_params) {
-  // GlobalPayments.configure({
-  // 	publicApiKey: "pkapi_cert_dNpEYIISXCGDDyKJiV"
-  // });
-  console.log(GlobalPayments);
+  GlobalPayments.configure({
+  	publicApiKey: "pkapi_cert_dNpEYIISXCGDDyKJiV"
+  });
+  
   console.log(window.GlobalPayments);
 
+  console.log(GlobalPayments.events);
+
   var addHandler = window.GlobalPayments
-    ? GlobalPayments.Events.addHandler
+    ? GlobalPayments.events.addHandler
     : function() {};
 
   function addClass(element, klass) {

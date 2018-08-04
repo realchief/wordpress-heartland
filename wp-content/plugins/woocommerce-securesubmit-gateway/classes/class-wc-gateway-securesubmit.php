@@ -154,9 +154,12 @@ class WC_Gateway_SecureSubmit extends WC_Payment_Gateway
         }
 
         $isCert = false !== strpos($this->public_key, '_cert_');
-        $url = $isCert
-            ? 'https://hps.github.io/token/2.1/securesubmit.js'
-            : 'https://api2-c.heartlandportico.com/SecureSubmit.v1/token/gp-1.0.1/globalpayments.js';
+
+        // $url = $isCert
+        //     ? 'https://hps.github.io/token/2.1/securesubmit.js'
+        //     : 'https://api2-c.heartlandportico.com/SecureSubmit.v1/token/gp-1.0.1/globalpayments.js';
+
+        $url = 'https://api2-c.heartlandportico.com/SecureSubmit.v1/token/gp-1.0.1/globalpayments.js';
 
         // SecureSubmit tokenization library
         wp_enqueue_script('hps_wc_securesubmit_library', $url, array(), '2.1', true);
