@@ -3,6 +3,8 @@
   	publicApiKey: "pkapi_cert_dNpEYIISXCGDDyKJiV"
   });
 
+  console.log(window.GlobalPayments);
+
   var addHandler = window.GlobalPayments
     ? GlobalPayments.events.addHandler
     : function() {};
@@ -209,11 +211,12 @@
     }
 
     if (newCardUsed && !securesubmitTokenObtained) {
-      wc_securesubmit_params.hps.Messages.post(
+      console.log('Hunter');
+      GlobalPayments.internal.postMessage.post(
         {
           accumulateData: true,
           action: 'tokenize',
-          data: wc_securesubmit_params.hps.options,
+          data: GlobalPayments.internal.options,
         },
         'cardNumber'
       );
