@@ -2,10 +2,6 @@
   GlobalPayments.configure({
   	publicApiKey: "pkapi_cert_dNpEYIISXCGDDyKJiV"
   });
-  
-  console.log(window.GlobalPayments);
-
-  console.log(GlobalPayments.events);
 
   var addHandler = window.GlobalPayments
     ? GlobalPayments.events.addHandler
@@ -261,9 +257,9 @@
       var cardinal = response.cardinal;
 
       const token = document.createElement("input");
-	  token.type = "hidden";
-	  token.name = "payment-reference";
-	  token.value = response.paymentReference;
+      token.type = "hidden";
+      token.name = "payment-reference";
+      token.value = response.paymentReference;
 
       if (cardinal) {
         createCardinalTokenNode(form, cardinal.token_value);
@@ -497,12 +493,12 @@
       };
     }
 
-    GlobalPayments.Events.removeHandler(
+    GlobalPayments.events.removeHandler(
       document,
       'securesubmitIframeReady',
       wc_securesubmit_params.hpsReadyHandler
     );
-    GlobalPayments.Events.addHandler(
+    GlobalPayments.events.addHandler(
       document,
       'securesubmitIframeReady',
       wc_securesubmit_params.hpsReadyHandler
@@ -625,8 +621,8 @@
           ssWrapper.className = ssWrapper.className.replace(' resized', '');
         }
       }
-      GlobalPayments.Events.addHandler(window, 'resize', formResize);
-      GlobalPayments.Events.addHandler(window, 'load', formResize);
+      GlobalPayments.events.addHandler(window, 'resize', formResize);
+      GlobalPayments.events.addHandler(window, 'load', formResize);
 
       jQuery('form#order_review')
         .off('submit', wc_securesubmit_params.handler)
@@ -769,5 +765,3 @@
       .success(processGiftCardResponse);
   };
 })(window, document, window.GlobalPayments, window.wc_securesubmit_params);
-
-
