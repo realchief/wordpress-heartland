@@ -3,25 +3,6 @@
   	publicApiKey: "pkapi_cert_dNpEYIISXCGDDyKJiV"
   });
 
-  // console.log(GlobalPayments);
-
-  // GlobalPayments.configure({
-  //   merchantId: "merchant_id",
-  //   account: "hpp",
-  //   hash: (request) => {
-  //     return fetch("/hash.php", {
-  //       body: JSON.stringify(request),
-  //       credentials: "omit",
-  //       headers: new Headers({
-  //         "Content-Type": "application/json",
-  //       }),
-  //       method: "POST",
-  //     })
-  //     .then((resp) => resp.json());
-  //   },
-  //   env: "sandbox"
-  // });
-
   var addHandler = window.GlobalPayments
     ? GlobalPayments.events.addHandler
     : function() {};
