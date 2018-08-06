@@ -90,7 +90,7 @@
                         <span class="required">*</span>
                     </label>
                     <?php if ($this->use_iframes): ?>
-                        <div id="securesubmit_card_number"></div>
+                        <div id="credit-card"></div>
                     <?php else: ?>
                     <div class="cc-number">
                       <input id="securesubmit_card_number" type="tel" autocomplete="off" class="input-text card-number" placeholder="•••• •••• •••• ••••" />

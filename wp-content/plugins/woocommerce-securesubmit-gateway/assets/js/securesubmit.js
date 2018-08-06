@@ -3,7 +3,24 @@
   	publicApiKey: "pkapi_cert_dNpEYIISXCGDDyKJiV"
   });
 
-  console.log(window.GlobalPayments);
+  // console.log(GlobalPayments);
+
+  // GlobalPayments.configure({
+  //   merchantId: "merchant_id",
+  //   account: "hpp",
+  //   hash: (request) => {
+  //     return fetch("/hash.php", {
+  //       body: JSON.stringify(request),
+  //       credentials: "omit",
+  //       headers: new Headers({
+  //         "Content-Type": "application/json",
+  //       }),
+  //       method: "POST",
+  //     })
+  //     .then((resp) => resp.json());
+  //   },
+  //   env: "sandbox"
+  // });
 
   var addHandler = window.GlobalPayments
     ? GlobalPayments.events.addHandler
@@ -235,7 +252,7 @@
   function responseHandler(response) {
     var form = document.querySelector('form.checkout, form#order_review');
 
-    if (response.error || (response.heartland && response.heartland.error)) {
+    if (response.error || (response.globalpayments && response.globalpayments.error)) {
       var ul = document.createElement('ul');
       var li = document.createElement('li');
       clearFields();
@@ -285,7 +302,7 @@
     }
 
     toAll(
-      document.querySelectorAll('.card-number, .card-cvc, .expiry-date'),
+      document.querySelectorAll('.card-holder-name, .card-number, .card-cvc, .expiry-date'),
       function(element) {
         addHandler(element, 'change', clearFields);
       }
@@ -318,6 +335,34 @@
     }
   };
   window.securesubmitLoadEvents();
+
+  var paymentRequestForm = GlobalPayments.paymentRequest.setup("#paymentRequestPlainButton", {
+    total: {
+      label: "Total",
+      amount: { value: 10, currency: "USD" }
+    }
+  });
+
+  console.log(paymentRequestForm);
+
+  paymentRequestForm.on("token-success", function (resp) {
+    // Payment data was successfully tokenized
+    console.log(resp);
+  
+    // TODO: POST data to backend for processing
+  
+    // Mark the payment as `success`, `fail`, or `unknown`
+    // after processing response is known
+    GlobalPayments.paymentRequest.complete("success");
+  });
+  paymentRequestForm.on("token-error", function (resp) {
+    // An error occurred during tokenization
+    console.log(resp);
+  });
+  paymentRequestForm.on("error", function (resp) {
+    // An error occurred during setup or tokenization
+    console.log(resp);
+  });
 
   // Load function to build iframes when WC refreshes payment fields
   window.securesubmitLoadIframes = function() {
@@ -478,7 +523,8 @@
       };
     }
 
-    wc_securesubmit_params.hps = new GlobalPayments.ui.form(options);
+    wc_securesubmit_params.gps = GlobalPayments.creditCard.form('#credit-card');
+    console.log(wc_securesubmit_params.gps);
     if (!wc_securesubmit_params.hpsReadyHandler) {
       wc_securesubmit_params.hpsReadyHandler = function() {
         setTimeout(function() {
