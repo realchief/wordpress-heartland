@@ -85,59 +85,17 @@
         <div class="securesubmit_new_card">
             <div class="securesubmit_new_card_info">
                 <div class="form-row form-row-wide no-bottom-margin hideable">
-                    <label for="securesubmit_card_number">
-                        <?php _e("Credit Card number", 'wc_securesubmit') ?>
-                        <span class="required">*</span>
-                    </label>
                     <?php if ($this->use_iframes): ?>
+                        <!-- Other input fields to capture relevant data -->
+                        <label for="billing-zip">Billing Zip Code</label>
+                        <input id="billing-zip" name="billing-zip" type="tel" />
+                        
                         <div id="credit-card"></div>
-                    <?php else: ?>
-                    <div class="cc-number">
-                      <input id="securesubmit_card_number" type="tel" autocomplete="off" class="input-text card-number" placeholder="•••• •••• •••• ••••" />
-                      <div class="card-type-logo"></div>
-                   </div>
+                        
+                        <button type="button" id="paymentRequestPlainButton">Populate from Chrome</button>
                     <?php endif; ?>
                 </div>
                 <div class="clear"></div>
-                <div class="form-row hideable no-bottom-margin">
-                    <div class="form-row-first half-row">
-                        <label for="securesubmit_card_holder">
-                            <?php _e("Card Holder Name", 'wc_securesubmit') ?>
-                            <span class="required">*</span>
-                        </label>
-                        <?php if ($this->use_iframes): ?>
-                            <div id="securesubmit_card_holder"></div>
-                        <?php else: ?>
-                            <input id="securesubmit_card_holder" type="tel" autocomplete="off" class="input-text card-holder" placeholder="Jane Smith" />
-                        <?php endif; ?>
-                    </div>
-                    <div class="form-row-first half-row">
-                        <label for="securesubmit_card_expiration">
-                            <?php _e("Expiration date", 'wc_securesubmit') ?>
-                            <span class="required">*</span>
-                        </label>
-                        <?php if ($this->use_iframes): ?>
-                            <div id="securesubmit_card_expiration"></div>
-                        <?php else: ?>
-                            <input id="securesubmit_card_expiration" type="tel" autocomplete="off" class="input-text expiry-date" placeholder="MM / YYYY" />
-                        <?php endif; ?>
-                    </div>
-                    <div class="form-row-last half-row">
-                        <label for="securesubmit_card_cvv">
-                            <?php _e("Security code", 'wc_securesubmit') ?>
-                            <span class="required">*</span>
-                        </label>
-                        <?php if ($this->use_iframes): ?>
-                            <div id="securesubmit_card_cvv"></div>
-                        <?php else: ?>
-                           <div class="ss-cvv">
-                            <input type="tel" id="securesubmit_card_cvv" maxlength="4" autocomplete="off" class="input-text card-cvc" placeholder="CVV" />
-                             <div class="ss-cvv-icon"></div>
-                           </div>
-                        <?php endif; ?>
-                        <span class="help securesubmit_card_csc_description"></span>
-                    </div>
-                </div>
 
                 <?php if ($this->allow_card_saving == 'yes'): ?>
                     <div class="form-row form-row-wide no-top-margin no-top-padding no-bottom-margin">
@@ -149,9 +107,6 @@
                         </p>
                     </div>
                 <?php endif; ?>
-                <div>
-                  <button type="button" id="paymentRequestPlainButton">Populate from Chrome</button>
-                </div>
             </div>
             <div class="clear"></div>
         </div>
