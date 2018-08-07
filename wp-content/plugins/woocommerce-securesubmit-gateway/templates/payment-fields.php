@@ -82,11 +82,13 @@
       <?php $newClass .= is_user_logged_in() ? ' logged-in-no-saved-cards' : ''; ?>
     <?php endif; ?>
     <div class="securesubmit-content new-card-content" <?php echo $newClass;?>" style="<?php echo $styletag; ?>">
+    <form id="payment-form" action="<?php echo esc_url( wc_get_checkout_url() ); ?>" enctype="multipart/form-data" method="post">
         <div class="securesubmit_new_card">
             <div class="securesubmit_new_card_info">
                 <div class="form-row form-row-wide no-bottom-margin hideable">
                     <?php if ($this->use_iframes): ?>
                         <!-- Other input fields to capture relevant data -->
+
                         <label for="billing-zip">Billing Zip Code</label>
                         <input id="billing-zip" name="billing-zip" type="tel" />
                         
@@ -110,6 +112,7 @@
             </div>
             <div class="clear"></div>
         </div>
+    </form>
     </div>
     <input type="hidden" name="securesubmit_token" id="securesubmit_token" />
 </fieldset>
