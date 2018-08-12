@@ -318,7 +318,7 @@
     var paymentRequestForm = GlobalPayments.paymentRequest.setup("#paymentRequestPlainButton", {
       total: {
         label: "Total",
-        amount: { value: 10, currency: "USD" }
+        amount: {value: wc_securesubmit_params.total_order, currency: "USD"}
       }
     });
   

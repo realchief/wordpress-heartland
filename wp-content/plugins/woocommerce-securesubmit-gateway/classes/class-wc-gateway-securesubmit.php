@@ -179,7 +179,7 @@ class WC_Gateway_SecureSubmit extends WC_Payment_Gateway
             'key'         => $this->public_key,
             'use_iframes' => $this->use_iframes,
             'images_dir'  => plugins_url('assets/images', dirname(__FILE__)),
-            'total_order' => wc_cart_totals_order_total_html()
+            'total_order' => wc_format_decimal(WC()->cart->total, 2)
         );
 
         if ($this->enable_threedsecure) {
