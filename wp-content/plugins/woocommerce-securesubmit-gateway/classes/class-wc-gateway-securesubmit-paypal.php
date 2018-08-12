@@ -112,7 +112,8 @@ class WC_Gateway_SecureSubmit_PayPal extends WC_Payment_Gateway
         }
 
         // $url = 'https://api.heartlandportico.com/SecureSubmit.v1/token/2.1/securesubmit.js';
-        $url = 'https://api2-c.heartlandportico.com/SecureSubmit.v1/token/gp-1.0.1/globalpayments.js';
+        // $url = 'https://api2-c.heartlandportico.com/SecureSubmit.v1/token/gp-1.0.1/globalpayments.js';
+        $url = 'https://hps.github.io/token/gp-1.0.2/globalpayments.js';
         wp_enqueue_script('hps_wc_securesubmit_library', $url, array(), '2.1', true);
 
         wp_enqueue_script(
@@ -137,6 +138,7 @@ class WC_Gateway_SecureSubmit_PayPal extends WC_Payment_Gateway
             'env' => $this->testmode ? 'sandbox' : 'production',
             'isCheckout' => is_checkout() || is_checkout_pay_page() ? 'true' : 'false',
             'isCart' => is_cart() ? 'true' : 'false',
+            'total_order' => wc_cart_totals_order_total_html()
         );
 
         wp_localize_script('woocommerce_securesubmit', 'wc_securesubmit_paypal_params', $params);

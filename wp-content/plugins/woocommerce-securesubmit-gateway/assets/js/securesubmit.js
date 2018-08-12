@@ -325,7 +325,6 @@
     paymentRequestForm.on("token-success", function (resp) {
       // Payment data was successfully tokenized
       console.log(resp);
-      console.log("Token Success");
     
       // TODO: POST data to backend for processing
     
@@ -336,12 +335,10 @@
     paymentRequestForm.on("token-error", function (resp) {
       // An error occurred during tokenization
       console.log(resp);
-      console.log("Token Error");
     });
     paymentRequestForm.on("error", function (resp) {
       // An error occurred during setup or tokenization
       console.log(resp);
-      console.log("Error");
     });
   };
   window.securesubmitLoadEvents();
@@ -507,7 +504,6 @@
 
     const cardForm = GlobalPayments.creditCard.form('#credit-card');
     console.log("CardForm" + cardForm);
-    // const cardForm = GlobalPayments.ui.form(options);
 
     cardForm.ready(() => {
       console.log("Registration of all credit card fields occurred");
