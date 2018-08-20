@@ -20,6 +20,16 @@ Download the contents and extract to your WordPress plugin folder. Activate.
 
 ## Changelog
 
+#### 1.11.26
+
+* Upgrade the Javascript Library
+* Add a “Populate from Chrome” link
+* Update the PHP SDK included in the plugin
+* Add a PSR-4 autoloader
+* Update existing plugin code to leverage the new SDK
+* Create a new payment gateway class to expose Global Payments eCommerce as a payment option within WooCommerce
+* Create configuration/options screen for Global Payments eCommerce
+
 #### 1.11.24
 
 * Correct totals when gift cards are used
