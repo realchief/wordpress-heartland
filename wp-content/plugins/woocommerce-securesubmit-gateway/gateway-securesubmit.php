@@ -47,6 +47,17 @@ class WooCommerceSecureSubmitGateway
         add_action('woocommerce_after_my_account', array($masterpass, 'myaccountConnect'));
         add_action('wp_loaded', array($masterpass->reviewOrder, 'processCheckout'));
 
+        // GlobalPayments
+        $globalpayments = call_user_func(array(self::SECURESUBMIT_GATEWAY_CLASS . '_GlobalPayments', 'instance'));
+        add_action('wp_ajax_securesubmit_masterpass_lookup', array($globalpayments, 'lookupCallback'));
+        add_action('wp_ajax_nopriv_securesubmit_masterpass_lookup', array($globalpayments, 'lookupCallback'));
+        add_shortcode('woocommerce_masterpass_review_order', array($globalpayments, 'reviewOrderShortcode'));
+
+        add_action('woocommerce_order_actions', array($globalpayments->capture, 'addOrderAction'));
+        add_action('woocommerce_order_action_' . $globalpayments->id . '_capture', array($globalpayments, 'process_capture'));
+        add_action('woocommerce_after_my_account', array($globalpayments, 'myaccountConnect'));
+        add_action('wp_loaded', array($globalpayments->reviewOrder, 'processCheckout'));
+
         // PayPal
         $paypal = call_user_func(array(self::SECURESUBMIT_GATEWAY_CLASS . '_PayPal', 'instance'));
         remove_action('init', 'woocommerce_paypal_express_review_order_page') ;
@@ -100,6 +111,11 @@ class WooCommerceSecureSubmitGateway
         add_filter('woocommerce_payment_gateways', array($this, 'addGateway'));
         add_action('woocommerce_after_my_account', array($this, 'savedCards'));
 
+        call_user_func(array(self::SECURESUBMIT_GATEWAY_CLASS . '_GlobalPayments', 'createOrderReviewPage'));
+
+        add_filter('woocommerce_payment_gateways', array($this, 'addGateway'));
+        add_action('woocommerce_after_my_account', array($this, 'savedCards'));
+
         // PayPal
         $paypal = call_user_func(array(self::SECURESUBMIT_GATEWAY_CLASS . '_PayPal', 'instance'));
         remove_action('init', 'woocommerce_paypal_express_review_order_page');
@@ -133,6 +149,7 @@ class WooCommerceSecureSubmitGateway
         }
         $methods[] = 'WC_Gateway_SecureSubmit_PayPal';
         $methods[] = 'WC_Gateway_SecureSubmit_PayPal_Credit';
+        $methods[] = 'WC_Gateway_SecureSubmit_GlobalPayments';
         return $methods;
     }
 
@@ -179,6 +196,7 @@ class WooCommerceSecureSubmitGateway
         include_once('classes/class-wc-gateway-securesubmit-subscriptions.php');
         include_once('classes/class-wc-gateway-securesubmit-subscriptions-deprecated.php');
         include_once('classes/class-wc-gateway-securesubmit-masterpass.php');
+        include_once('classes/class-wc-gateway-securesubmit-globalpayments.php');
         include_once('classes/class-wc-gateway-securesubmit-giftcards.php');
         include_once('classes/class-giftcard-order-placement.php');
     }
