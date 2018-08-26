@@ -26,7 +26,7 @@ class WC_Gateway_SecureSubmit_GlobalPayments_Refund
 
             $globalpaymentsOrderId = get_post_meta($orderId, '_globalpayments_order_id', true);
             if (!$globalpaymentsOrderId) {
-                throw new Exception(__('MasterPass order id cannot be found', 'wc_securesubmit'));
+                throw new Exception(__('GlobalPayments order id cannot be found', 'wc_securesubmit'));
             }
 
             $globalpaymentsPaymentStatus = get_post_meta($orderId, '_globalpayments_payment_status', true);
@@ -49,7 +49,7 @@ class WC_Gateway_SecureSubmit_GlobalPayments_Refund
             );
 
             update_post_meta($orderId, '_globalpayments_payment_status', 'refunded', 'captured');
-            $order->add_order_note(__('MasterPass payment refunded', 'wc_securesubmit') . ' (Transaction ID: ' . $response->transactionId . ')');
+            $order->add_order_note(__('GlobalPayments payment refunded', 'wc_securesubmit') . ' (Transaction ID: ' . $response->transactionId . ')');
             return true;
         } catch (Exception $e) {
             $error = __('Error:', 'wc_securesubmit') . ' "' . $e->getMessage() . '"';

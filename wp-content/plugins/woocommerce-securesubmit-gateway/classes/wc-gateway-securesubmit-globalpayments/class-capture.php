@@ -24,7 +24,7 @@ class WC_Gateway_SecureSubmit_GlobalPayments_Capture
 
             $globalpaymentsOrderId = get_post_meta($orderId, '_globalpayments_order_id', true);
             if (!$globalpaymentsOrderId) {
-                throw new Exception(__('MasterPass order id cannot be found', 'wc_securesubmit'));
+                throw new Exception(__('Globalpayments order id cannot be found', 'wc_securesubmit'));
             }
 
             $globalpaymentsPaymentStatus = get_post_meta($orderId, '_globalpayments_payment_status', true);
@@ -67,7 +67,7 @@ class WC_Gateway_SecureSubmit_GlobalPayments_Capture
      */
     public function addOrderAction($actions)
     {
-        $actions[$this->masterpass->id . '_capture'] = __('Capture GlobalPayments authorization', 'wc_securesubmit');
+        $actions[$this->globalpayments->id . '_capture'] = __('Capture GlobalPayments authorization', 'wc_securesubmit');
         return $actions;
     }
 }

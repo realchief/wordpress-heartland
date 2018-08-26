@@ -90,7 +90,7 @@ class WC_Gateway_SecureSubmit_GlobalPayments extends WC_Payment_Gateway
         } elseif (!$this->merchantId) {
             $messageFmt = 'SecureSubmit error: Please enter your merchant ID <a href="%s">here</a>';
         } elseif (!$this->accountId) {
-            $messageFmt = 'SecureSubmit error: Please enter your merchant checkout ID <a href="%s">here</a>';
+            $messageFmt = 'SecureSubmit error: Please enter your account ID <a href="%s">here</a>';
         }
 
         if ('' !== $messageFmt) {
@@ -130,29 +130,29 @@ class WC_Gateway_SecureSubmit_GlobalPayments extends WC_Payment_Gateway
 
     public function payment_fields()
     {
-        $longAccessToken = get_user_meta(get_current_user_id(), '_masterpass_long_access_token', true);
+        $longAccessToken = get_user_meta(get_current_user_id(), '_globalpayments_long_access_token', true);
 
         if ('' !== $longAccessToken) {
-            delete_user_meta(get_current_user_id(), '_masterpass_long_access_token');
+            delete_user_meta(get_current_user_id(), '_globalpayments_long_access_token');
 
-            $cards = get_transient('_masterpass_connected_cards');
+            $cards = get_transient('_globalpayments_connected_cards');
             if (false === $cards) {
                 try {
                     $service = $this->getService();
                     $result = $service->preApproval($longAccessToken);
                     $cards = $result->preCheckoutData->Cards->Card;
 
-                    add_user_meta(get_current_user_id(), '_masterpass_long_access_token', (string)$result->longAccessToken);
-                    set_transient('_masterpass_wallet_name', (string)$result->preCheckoutData->WalletName, HOUR_IN_SECONDS / 4);
-                    set_transient('_masterpass_wallet_id', (string)$result->preCheckoutData->ConsumerWalletId, HOUR_IN_SECONDS / 4);
-                    set_transient('_masterpass_pre_checkout_transaction_id', (string)$result->preCheckoutData->preCheckoutTransactionId, HOUR_IN_SECONDS / 4);
-                    set_transient('_masterpass_connected_cards', $cards, HOUR_IN_SECONDS / 4);
+                    add_user_meta(get_current_user_id(), '_globalpayments_long_access_token', (string)$result->longAccessToken);
+                    set_transient('_globalpayments_wallet_name', (string)$result->preCheckoutData->WalletName, HOUR_IN_SECONDS / 4);
+                    set_transient('_globalpayments_wallet_id', (string)$result->preCheckoutData->ConsumerWalletId, HOUR_IN_SECONDS / 4);
+                    set_transient('_globalpayments_pre_checkout_transaction_id', (string)$result->preCheckoutData->preCheckoutTransactionId, HOUR_IN_SECONDS / 4);
+                    set_transient('_globalpayments_connected_cards', $cards, HOUR_IN_SECONDS / 4);
                 } catch (Exception $e) { }
             }
         }
 
         $path = dirname(plugin_dir_path(__FILE__));
-        include $path . '/templates/masterpass-fields.php';
+        include $path . '/templates/globalpayments-fields.php';
     }
 
     public function paymentScripts()
@@ -171,20 +171,20 @@ class WC_Gateway_SecureSubmit_GlobalPayments extends WC_Payment_Gateway
             $masterpassClient = 'https://sandbox.masterpass.com/lightbox/Switch/integration/MasterPass.client.js';
         }
 
-        // MasterPass client library
-        wp_enqueue_script('securesubmit_masterpass', $masterpassClient, array('jquery'), '6.0', true);
-        // MasterPass js controller for WooCommerce
-        wp_enqueue_script('woocommerce_securesubmit_masterpass', plugins_url('assets/js/masterpass.js', dirname(__FILE__)), array('jquery'), '1.0', true);
+        // Globalpayments client library
+        wp_enqueue_script('securesubmit_globalpayments', $masterpassClient, array('jquery'), '6.0', true);
+        // Globalpayments js controller for WooCommerce
+        wp_enqueue_script('woocommerce_securesubmit_globalpayments', plugins_url('assets/js/masterpass.js', dirname(__FILE__)), array('jquery'), '1.0', true);
 
-        $masterpassParams = array(
+        $globalpaymentsParams = array(
             'ajaxUrl' => admin_url('admin-ajax.php'),
         );
 
-        wp_localize_script('woocommerce_securesubmit_masterpass', 'wc_securesubmit_masterpass_params', $masterpassParams);
+        wp_localize_script('woocommerce_securesubmit_globalpayments', 'wc_securesubmit_globalpayments_params', $globalpaymentsParams);
     }
 
     /**
-     * Creates a new MasterPass session.
+     * Creates a new Globalpayments session.
      */
     public function lookupCallback()
     {
@@ -192,7 +192,7 @@ class WC_Gateway_SecureSubmit_GlobalPayments extends WC_Payment_Gateway
     }
 
     /**
-     * Handles "Connect with MasterPass" interface.
+     * Handles "Connect with Globalpayments" interface.
      */
     public function myaccountConnect()
     {
@@ -202,7 +202,7 @@ class WC_Gateway_SecureSubmit_GlobalPayments extends WC_Payment_Gateway
     }
 
     /**
-     * Handles the `woocommerce_masterpass_review_order` shortcode used in the
+     * Handles the `woocommerce_globalpayments_review_order` shortcode used in the
      * "Order Review" page.
      *
      * @param array $atts
@@ -348,13 +348,13 @@ class WC_Gateway_SecureSubmit_GlobalPayments extends WC_Payment_Gateway
     {
         return wc_create_page(
             // $slug
-            esc_sql(_x('masterpass-review-order','page_slug','woocommerce')),
+            esc_sql(_x('globalpayments-review-order','page_slug','woocommerce')),
             // $option
-            'woocommerce_masterpass_review_order_page_id',
+            'woocommerce_globalpayments_review_order_page_id',
             // $title
             __('Checkout &rarr; Review Order','wc_securesubmit'),
             // $content
-            '[woocommerce_masterpass_review_order]',
+            '[woocommerce_globalpayments_review_order]',
             // $parent
             wc_get_page_id('checkout')
         );

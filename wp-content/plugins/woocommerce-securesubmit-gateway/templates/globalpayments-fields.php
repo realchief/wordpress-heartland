@@ -4,10 +4,10 @@ if (!defined('ABSPATH')) {
 }
 ?>
 
-<div class="masterpass-checkout">
+<div class="globalpayments-checkout">
   <input type="hidden"
          name="action"
-         value="securesubmit_masterpass_lookup" />
+         value="securesubmit_globalpayments_lookup" />
 
   <?php if (!empty($cards)): ?>
     <h6>Credit Cards</h6>
@@ -25,23 +25,23 @@ if (!defined('ABSPATH')) {
     <?php endforeach; ?>
   <?php endif; ?>
 
-  <button type="button" class="button" id="securesubmit-buy-with-masterpass">
-    <span class="masterpass-logo">
+  <button type="button" class="button" id="securesubmit-buy-with-globalpayments">
+    <span class="globalpayments-logo">
       <img src="https://www.mastercard.com/mc_us/wallet/img/en/US/mcpp_wllt_btn_chk_147x034px.png"
-           alt="<?= __('Buy with MasterPass'); ?>" />
+           alt="<?= __('Buy with Globalpayments'); ?>" />
     </span>
-    <span class="sr-only"><?= __('Buy with MasterPass'); ?></span>
+    <span class="sr-only"><?= __('Buy with Globalpayments'); ?></span>
   </button>
 
   <a href="http://www.mastercard.com/mc_us/wallet/learnmore/en"
-     class="masterpass-learn-more"
+     class="globalpayments-learn-more"
      target="_blank"
-     title="<?= __('Learn more about MasterPass', 'wc_securesubmit'); ?>">
+     title="<?= __('Learn more about Globalpayments', 'wc_securesubmit'); ?>">
     <?= __('Learn more', 'wc_securesubmit'); ?>
   </a>
 
   <script data-cfasync="false" type="text/javascript">
-    window.securesubmitMasterPassLookup = window.securesubmitMasterPassLookup || function () {};
-    window.securesubmitMasterPassLookup();
+    window.securesubmitGlobalpaymentsLookup = window.securesubmitGlobalpaymentsLookup || function () {};
+    window.securesubmitGlobalpaymentsLookup();
   </script>
 </div>

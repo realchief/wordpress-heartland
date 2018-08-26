@@ -62,7 +62,7 @@ return array(
     'customError' => array(
         'title'       => __('Custom Error', 'wc_securesubmit'),
         'type'        => 'textarea',
-        'description' => __('To use the default MasterPass error message use %s in the custom message text, ex. My message. %s -> will be displayed as: My message. Original MasterPass message.', 'wc_securesubmit'),
+        'description' => __('To use the default Globalpayments error message use %s in the custom message text, ex. My message. %s -> will be displayed as: My message. Original MasterPass message.', 'wc_securesubmit'),
         'default'     => '%s'
     ),
     'paymentAction' => array(

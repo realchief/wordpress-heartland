@@ -58,7 +58,7 @@ class WC_Gateway_SecureSubmit_GlobalPayments_Payment
                 $transactionId = $response->transactionId;
             }
 
-            $order->add_order_note(__('MasterPass payment completed', 'wc_securesubmit') . ' (Transaction ID: ' . $transactionId . ')');
+            $order->add_order_note(__('GlobalPayments payment completed', 'wc_securesubmit') . ' (Transaction ID: ' . $transactionId . ')');
             $order->payment_complete($transactionId);
             $cart->empty_cart();
 
