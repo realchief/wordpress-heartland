@@ -1,13 +1,13 @@
 <?php
 
-namespace GlobalPayments\Api\Builders;
+require_once 'BaseBuilder.php';
 
 use GlobalPayments\Api\Builders\BaseBuilder\Validations;
 use GlobalPayments\Api\Entities\Enums\TransactionModifier;
 use GlobalPayments\Api\Entities\Exceptions\ArgumentException;
 use GlobalPayments\Api\Entities\Transaction;
 
-abstract class TransactionBuilder extends BaseBuilder
+abstract class TransactionBuilder
 {
     /**
      * Request transaction type

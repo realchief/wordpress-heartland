@@ -2,6 +2,13 @@
 
 namespace GlobalPayments\Api\Entities;
 
+$baseDir = dirname(__FILE__);
+$originalPath = get_include_path();
+
+ini_set('include_path', $originalPath . PATH_SEPARATOR . $baseDir);
+
+require_once 'RecurringEntity.php';
+
 use GlobalPayments\Api\PaymentMethods\RecurringPaymentMethod;
 use GlobalPayments\Api\PaymentMethods\Interfaces\IPaymentMethod;
 

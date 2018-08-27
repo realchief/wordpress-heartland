@@ -1,6 +1,13 @@
 <?php
 
-namespace GlobalPayments\Api\Builders;
+$baseDir = dirname(__FILE__);
+$originalPath = get_include_path();
+
+ini_set('include_path', $originalPath . PATH_SEPARATOR . $baseDir);
+
+require_once 'TransactionBuilder.php';
+
+// namespace GlobalPayments\Api\Builders;
 
 use GlobalPayments\Api\Entities\Address;
 use GlobalPayments\Api\Entities\EcommerceInfo;

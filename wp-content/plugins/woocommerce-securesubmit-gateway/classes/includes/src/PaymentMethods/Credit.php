@@ -2,6 +2,20 @@
 
 namespace GlobalPayments\Api\PaymentMethods;
 
+$baseDir = dirname(__FILE__);
+$originalPath = get_include_path();
+
+ini_set('include_path', $originalPath . PATH_SEPARATOR . $baseDir);
+
+require_once 'Interfaces\IEncryptable.php';
+require_once 'Interfaces\ITokenizable.php';
+require_once 'Interfaces\IAuthable.php';
+require_once 'Interfaces\IReversable.php';
+require_once 'Interfaces\IRefundable.php';
+require_once 'Interfaces\IVerifyable.php';
+require_once 'Interfaces\IPrePayable.php';
+require_once 'Interfaces\IBalanceable.php';
+
 use GlobalPayments\Api\Builders\AuthorizationBuilder;
 use GlobalPayments\Api\Entities\Enums\PaymentMethodType;
 use GlobalPayments\Api\Entities\Enums\TransactionType;

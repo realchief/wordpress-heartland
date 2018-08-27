@@ -2,6 +2,13 @@
 
 namespace GlobalPayments\Api\PaymentMethods;
 
+$baseDir = dirname(__FILE__);
+$originalPath = get_include_path();
+
+ini_set('include_path', $originalPath . PATH_SEPARATOR . $baseDir);
+
+require_once 'Interfaces\IPinProtected.php';
+
 use GlobalPayments\Api\Builders\AuthorizationBuilder;
 use GlobalPayments\Api\Entities\Enums\PaymentMethodType;
 use GlobalPayments\Api\Entities\Enums\TransactionType;

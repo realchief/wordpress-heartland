@@ -2,6 +2,13 @@
 
 namespace GlobalPayments\Api\Gateways;
 
+$baseDir = dirname(__FILE__);
+$originalPath = get_include_path();
+
+ini_set('include_path', $originalPath . PATH_SEPARATOR . $baseDir);
+
+require_once 'XmlGateway.php';
+
 use DOMDocument;
 use DOMElement;
 use GlobalPayments\Api\Builders\AuthorizationBuilder;

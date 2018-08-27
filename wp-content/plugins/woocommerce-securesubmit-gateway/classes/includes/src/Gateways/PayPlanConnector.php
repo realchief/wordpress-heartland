@@ -2,6 +2,13 @@
 
 namespace GlobalPayments\Api\Gateways;
 
+$baseDir = dirname(__FILE__);
+$originalPath = get_include_path();
+
+ini_set('include_path', $originalPath . PATH_SEPARATOR . $baseDir);
+
+require_once 'RestGateway.php';
+
 use GlobalPayments\Api\Builders\RecurringBuilder;
 use GlobalPayments\Api\Entities\Address;
 use GlobalPayments\Api\Entities\Customer;

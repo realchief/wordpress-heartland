@@ -1,0 +1,114 @@
+2018-08-27T00:25:15+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T00:25:25+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T00:25:29+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T00:25:34+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T00:27:31+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T00:29:32+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T00:31:35+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T00:33:34+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T01:04:28+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T01:05:46+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T01:06:51+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T01:07:48+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T01:56:44+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T02:03:55+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T02:04:39+00:00 CRITICAL Class 'TransactionBuilder' not found
+
+2018-08-27T02:09:01+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\BaseBuilder' not found
+
+2018-08-27T02:13:57+00:00 CRITICAL Class 'TransactionBuilder' not found
+
+2018-08-27T02:14:42+00:00 CRITICAL Class 'TransactionBuilder' not found
+
+2018-08-27T02:15:13+00:00 CRITICAL Class 'TransactionBuilder' not found
+
+2018-08-27T02:15:53+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\BaseBuilder' not found
+
+2018-08-27T02:17:01+00:00 CRITICAL Class 'BaseBuilder' not found
+
+2018-08-27T02:20:01+00:00 CRITICAL Class 'BaseBuilder' not found
+
+2018-08-27T02:22:42+00:00 CRITICAL Class 'BaseBuilder' not found
+
+2018-08-27T02:35:48+00:00 CRITICAL Class 'BaseBuilder' not found
+
+2018-08-27T02:36:18+00:00 CRITICAL Class 'BaseBuilder' not found
+
+2018-08-27T02:37:05+00:00 CRITICAL Class 'BaseBuilder' not found
+
+2018-08-27T02:37:52+00:00 CRITICAL Class 'BaseBuilder' not found
+
+2018-08-27T02:38:47+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T02:39:51+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T03:04:17+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T03:12:58+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T03:14:08+00:00 CRITICAL Class 'GlobalPayments\Api\Entities\RecurringEntity' not found
+
+2018-08-27T03:15:07+00:00 CRITICAL Class 'GlobalPayments\Api\Entities\RecurringEntity' not found
+
+2018-08-27T03:17:09+00:00 CRITICAL Class 'GlobalPayments\Api\Entities\RecurringEntity' not found
+
+2018-08-27T03:18:08+00:00 CRITICAL Interface 'GlobalPayments\Api\Entities\IRecurringEntity' not found
+
+2018-08-27T03:21:27+00:00 CRITICAL Interface 'IRecurringEntity' not found
+
+2018-08-27T03:22:01+00:00 CRITICAL Interface 'IRecurringEntity' not found
+
+2018-08-27T03:22:22+00:00 CRITICAL Class 'RecurringEntity' not found
+
+2018-08-27T03:24:56+00:00 CRITICAL Class 'GlobalPayments\Api\Gateways\RestGateway' not found
+
+2018-08-27T03:27:55+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T03:29:07+00:00 CRITICAL Class 'GlobalPayments\Api\Builders\TransactionBuilder' not found
+
+2018-08-27T03:29:25+00:00 CRITICAL Class 'GlobalPayments\Api\Gateways\RestGateway' not found
+
+2018-08-27T03:30:21+00:00 CRITICAL Class 'GlobalPayments\Api\Gateways\XmlGateway' not found
+
+2018-08-27T03:31:14+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IPaymentMethod' not found
+
+2018-08-27T03:34:52+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IChargable' not found
+
+2018-08-27T03:35:32+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IRefundable' not found
+
+2018-08-27T03:36:00+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IEncryptable' not found
+
+2018-08-27T03:37:11+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\ITokenizable' not found
+
+2018-08-27T03:37:43+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IAuthable' not found
+
+2018-08-27T03:38:08+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IReversable' not found
+
+2018-08-27T03:38:32+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IVerifyable' not found
+
+2018-08-27T03:39:00+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IVerifyable' not found
+
+2018-08-27T03:39:33+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IPrePayable' not found
+
+2018-08-27T03:39:56+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IBalanceable' not found
+
+2018-08-27T03:40:22+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\ICardData' not found
+
+2018-08-27T03:41:51+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\ITrackData' not found
+
+2018-08-27T03:42:24+00:00 CRITICAL Interface 'GlobalPayments\Api\PaymentMethods\Interfaces\IPinProtected' not found
+

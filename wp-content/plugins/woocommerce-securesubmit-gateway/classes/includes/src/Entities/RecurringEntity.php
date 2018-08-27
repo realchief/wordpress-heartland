@@ -2,6 +2,13 @@
 
 namespace GlobalPayments\Api\Entities;
 
+$baseDir = dirname(__FILE__);
+$originalPath = get_include_path();
+
+ini_set('include_path', $originalPath . PATH_SEPARATOR . $baseDir);
+
+require_once 'IRecurringEntity.php';
+
 use GlobalPayments\Api\ServicesContainer;
 use GlobalPayments\Api\Entities\Exceptions\ApiException;
 use GlobalPayments\Api\Entities\Exceptions\UnsupportedTransactionException;

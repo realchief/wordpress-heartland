@@ -88,14 +88,14 @@ if (!defined('HPS_SDK_LOADED')) {
 
     // Gateways
     require_once 'Gateways/Gateway.php';
-    require_once 'Entities/GatewayResponse.php';
-    require_once 'Entities/IPaymentGateway.php';
-    require_once 'Entities/IRecurringService.php';
-    require_once 'Entities/PayPlanConnector.php';
-    require_once 'Entities/PorticoConnector.php';
-    require_once 'Entities/RealexConnector.php';
-    require_once 'Entities/RestGateway.php';
-    require_once 'Entities/XmlGateway.php';
+    require_once 'Gateways/GatewayResponse.php';
+    require_once 'Gateways/IPaymentGateway.php';
+    require_once 'Gateways/IRecurringService.php';
+    require_once 'Gateways/PayPlanConnector.php';
+    require_once 'Gateways/PorticoConnector.php';
+    require_once 'Gateways/RealexConnector.php';
+    require_once 'Gateways/RestGateway.php';
+    require_once 'Gateways/XmlGateway.php';
 
     // PaymentMethods
     require_once 'PaymentMethods/Cash.php';

@@ -2,6 +2,13 @@
 
 namespace GlobalPayments\Api\PaymentMethods;
 
+$baseDir = dirname(__FILE__);
+$originalPath = get_include_path();
+
+ini_set('include_path', $originalPath . PATH_SEPARATOR . $baseDir);
+
+require_once 'Interfaces\ICardData.php';
+
 use GlobalPayments\Api\Entities\Enums\CvnPresenceIndicator;
 use GlobalPayments\Api\PaymentMethods\Interfaces\ICardData;
 use GlobalPayments\Api\Entities\Enums\DccProcessor;
