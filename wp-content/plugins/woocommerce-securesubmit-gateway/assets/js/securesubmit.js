@@ -3,23 +3,6 @@
   	publicApiKey: "pkapi_cert_dNpEYIISXCGDDyKJiV"
   });
 
-  GlobalPayments.configure({
-    merchantId: "merchant_id",
-    account: "hpp",
-    hash: (request) => {
-      return fetch("/hash.php", {
-        body: JSON.stringify(request),
-        credentials: "omit",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        method: "POST",
-      })
-      .then((resp) => resp.json());
-    },
-    env: "sandbox"
-  });
-
   var addHandler = window.GlobalPayments
     ? GlobalPayments.events.addHandler
     : function() {};
@@ -347,6 +330,9 @@
     
       // Mark the payment as `success`, `fail`, or `unknown`
       // after processing response is known
+      token = document.getElementById('token');
+      token = resp.token;
+      paymentRequestForm.submit(token);
       GlobalPayments.paymentRequest.complete("success");
     });
     paymentRequestForm.on("token-error", function (resp) {
