@@ -91,7 +91,7 @@
 
                         <label for="billing-zip">Billing Zip Code</label>
                         <input id="billing-zip" name="billing-zip" type="tel" />
-                        <input id="token" type="hidden">
+                        <input id="token" type="hidden" />
                         <div id="credit-card"></div>
                         
                         <button type="button" id="paymentRequestPlainButton">Populate from Chrome</button>

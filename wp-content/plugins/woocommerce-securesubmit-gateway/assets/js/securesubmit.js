@@ -324,15 +324,11 @@
   
     paymentRequestForm.on("token-success", function (resp) {
       // Payment data was successfully tokenized
-      console.log(resp);
-    
+      console.log(resp);    
       // TODO: POST data to backend for processing
-    
+      responseHandler;
       // Mark the payment as `success`, `fail`, or `unknown`
-      // after processing response is known
-      token = document.getElementById('token');
-      token = resp.token;
-      paymentRequestForm.submit(token);
+      // after processing response is known     
       GlobalPayments.paymentRequest.complete("success");
     });
     paymentRequestForm.on("token-error", function (resp) {
