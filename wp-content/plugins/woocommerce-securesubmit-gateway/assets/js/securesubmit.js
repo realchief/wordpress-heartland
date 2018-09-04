@@ -326,7 +326,7 @@
       // Payment data was successfully tokenized
       console.log(resp);    
       // TODO: POST data to backend for processing
-      responseHandler;
+      responseHandler(resp);
       // Mark the payment as `success`, `fail`, or `unknown`
       // after processing response is known     
       GlobalPayments.paymentRequest.complete("success");
