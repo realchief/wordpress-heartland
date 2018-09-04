@@ -88,9 +88,7 @@
                 <div class="form-row form-row-wide no-bottom-margin hideable">
                     <?php if ($this->use_iframes): ?>
                         <!-- Other input fields to capture relevant data -->
-
-                        <label for="billing-zip">Billing Zip Code</label>
-                        <input id="billing-zip" name="billing-zip" type="tel" />                     
+                                                             
                         <div id="credit-card"></div>
                         
                         <button type="button" id="paymentRequestPlainButton">Populate from Chrome</button>
